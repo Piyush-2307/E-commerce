@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,8 @@ public class Order {
     @Column(name = "status")
     private Status status;
 
-    @Column(name = "total_amount")
-    private int totalAmount;
+    @Column(name = "total_amount", precision = 12, scale = 2)
+    private BigDecimal totalAmount;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -39,3 +40,6 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 }
+
+
+

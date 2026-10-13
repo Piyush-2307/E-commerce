@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
@@ -28,6 +30,6 @@ public class OrderItem {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "price_at_purchase")
-    private int priceAtPurchase;
+    @Column(name = "price_at_purchase", precision = 12, scale = 2)
+    private BigDecimal priceAtPurchase;
 }

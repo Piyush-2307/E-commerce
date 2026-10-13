@@ -1,9 +1,11 @@
 package com.peeyush.E_commerce.controller;
 
 import com.peeyush.E_commerce.dto.request.AddCartItemRequest;
+import com.peeyush.E_commerce.dto.response.CartDescription;
 import com.peeyush.E_commerce.dto.response.CartItemResponse;
 import com.peeyush.E_commerce.dto.response.CartResponse;
 import com.peeyush.E_commerce.service.CartService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +18,7 @@ public class CartController {
     }
 
     @PostMapping("/users/{id}/item")
-    public CartItemResponse addItem(@PathVariable Long id, @RequestBody AddCartItemRequest request){
+    public CartItemResponse addItem(@PathVariable Long id,@Valid @RequestBody AddCartItemRequest request){
         return cartService.addItem(id, request);
     }
 
@@ -28,5 +30,10 @@ public class CartController {
     @DeleteMapping("/{cartId}/item/{productId}")
     public void deleteCartItem(@PathVariable Long cartId,@PathVariable Long productId){
         cartService.deleteCartItem(cartId, productId);
+    }
+
+    @GetMapping("/{id}/summary")
+    public CartDescription getSummery(@PathVariable Long id){
+        return cartService.summary(id);
     }
 }
